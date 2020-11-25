@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Trunk Based Development</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/sky.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="---">
+  					<textarea data-template>
+						<!--
+						A intégrer:
+						* BranchByAbstraction
+						* Gerer le changement (confort de pouvoir casser)
+						-->
+						### Trunk Based Development
+						![](début.JPG)
+						La vraie intégration continue ?
+						---
+						## Qui t'es toi ?
+						[@vaceletm](http://twitter.com/vaceletm)
+
+						<img src="tuleap-orange-black-big.png" width="300" />
+						---
+						## Un peu d'histoire
+						* SCCS ➡️ RCS ➡️ CVS ➡️ Subversion
+						* ClearCase, BitKeeper, Perforce
+						---
+						## Et ~~Dieu~~ Linus créa la Branche
+						Monotone (2003), Git (2005), Mercurial (2005)
+						<img src="oprah.jpg" height="250" />
+						---
+						## Git flow (2010)
+						<img src="git-model@2x.png" height="500" />
+						<small>Source <a href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a></small>
+						---
+						## Note of reflection
+
+						>  If your team is doing continuous delivery of software, I would suggest to adopt a <strong>much simpler workflow</strong> instead of trying to shoehorn git-flow into your team
+
+						Vincent Driessen, March 5, 2020
+						---
+						## Github flow
+						![](github.png)
+						<small>Source: <a href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></small>
+						---
+						## Merge Hell
+						![](merge.png)
+						---
+						## Trunk Based Development
+						![](tbd.png)
+						<small>Source: <a href="https://trunkbaseddevelopment.com/">https://trunkbaseddevelopment.com/</a></small>
+						---
+						## Et en vrai ?
+						La solution la plus simple: tout le monde commit dans ~~master main~~ trunk
+
+						* Facile
+						* Nécessite une grosse confiance
+						* Livraison continue compliquée quand `trunk` casse
+						---
+						## Plus de contrôle
+
+						Avec des Pull Requests ou des Merge Requests
+
+						* Un peu plus compliqué
+						* Introduit la Revue de Code
+						* Mais, y a des branches!
+						---
+						## Outil dédié
+
+						Gerrit impose un workflow par commit
+
+						* Montée en compétence plus difficile
+						* Gros focus sur la Revue de Code
+						* Moins populaire que Github
+						---
+						## Au jour le jour ?
+						* Atomicité des incréments de code
+						* ~~master main~~ trunk toujours "vert"
+						* Continuellement déployable
+						---
+						## Découpe ?
+						![](taskboard.png)
+						<!--
+						* Le sprint planning (ou équivalent) = la suite des commits
+						* En gros, une tâche = un commit
+						* Si ca conflict, le problème est ailleurs
+						-->
+						---
+						## Effets de bord
+						* Le fonctionnel est exposé tôt
+						* Le code doit être pensé intégré
+						* C'est codé, c'est livré !
+						---
+						## Pas livrable !
+
+						Livré ne veut pas dire activé
+
+						Feature Flags ou Feature Flipping
+
+						(conceptuellement c'est une branche)
+						---
+						## Résumé
+						* Fait remonter les problèmes au plus tôt
+						* Réduit la pression de livrer (90% vs 0%)
+						* Nécessite une bonne ingénierie
+						---
+						## Et si on en fait pas ?
+						Raccourcir les branches > Pull master fréquemment
+						---
+						### That's all folks
+						[![](fin.JPG)](https://roti.express/r/ag20-020)
+						<a href="https://roti.express/r/ag20-020">ROTI.express</a>
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
